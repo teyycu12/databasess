@@ -1,7 +1,7 @@
 # 114-1 Database System
 ### 科技116 周庭伊
 #### HW1 Flask & MySQL 美式餐廳訂位系統
-### 影片連結https://youtu.be/Mpe8EFFMM-Q
+### 影片連結https://youtu.be/PvdTA2btVAE?si=oynCwXH9O1LGpmF3
 * 新增 (Create): 使用者可透過網頁表單提交新的訂位資料。
 * 讀取 (Read): 在首頁以表格形式清楚地展示所有訂位清單。
 * 更新 (Update): 提供「編輯」功能，讓使用者能修改單筆訂位的詳細資訊。
