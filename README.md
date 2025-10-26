@@ -1,6 +1,7 @@
 # 114-1 Database System
 ## 科技116 周庭伊
 ## HW1 Flask & MySQL 美式餐廳訂位系統
+**[點此觀看：HW1 美式餐廳訂位系統](https://www.youtube.com/watch?v=Mpe8EFFMM-Q)**
 ### 影片連結https://youtu.be/PvdTA2btVAE?si=oynCwXH9O1LGpmF3
 * 新增 (Create): 使用者可透過網頁表單提交新的訂位資料。
 * 讀取 (Read): 在首頁以表格形式清楚地展示所有訂位清單。
@@ -9,7 +10,7 @@
 <img width="749" height="382" alt="螢幕擷取畫面 2025-10-11 015020" src="https://github.com/user-attachments/assets/0bf27d57-bb7e-45c5-ab30-0ead2c855f59" />
 
 ## HW2 CRUD 學生選課系統
-### 影片連結 ! * 影片連結](https://img.youtube.com/vi/JYJ_1Xpg8Bg/0.jpg)
+**[點此觀看：HW2 學生選課系統](https://www.youtube.com/watch?v=JYJ_1Xpg8Bg)**
 ### 專案功能
 * **後端框架**: Python Flask
 * **資料庫**: MySQL
