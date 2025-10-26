@@ -9,7 +9,7 @@
 <img width="749" height="382" alt="螢幕擷取畫面 2025-10-11 015020" src="https://github.com/user-attachments/assets/0bf27d57-bb7e-45c5-ab30-0ead2c855f59" />
 
 ## HW2 CRUD 學生選課系統
-### 影片連結 [![IMAGE ALT TEXT HERE](https://img.youtube.com/viJYJ_1Xpg8Bg/0.jpg)](https://www.youtube.com/watch?v=JYJ_1Xpg8Bg)
+### 影片連結 ! * 影片連結](https://img.youtube.com/vi/JYJ_1Xpg8Bg/0.jpg)
 ### 專案功能
 * **後端框架**: Python Flask
 * **資料庫**: MySQL
