@@ -27,7 +27,7 @@
     * 建立了一個「選課報表」頁面。
     * 此頁面使用 `INNER JOIN` 語法，串聯 `students`、`courses` 和 `enrollments` 三張資料表，以顯示「學生姓名」、「課程名稱」和「授課教師」，完美符合作業要求。
 
-### ERD (實體關係圖)
+### 操作示意圖
 本系統的資料庫架構包含 `students`、`courses` 以及作為關聯橋梁的 `enrollments`，用以實現多對多 (Many-to-Many) 的關聯。
 
 <img width="956" height="506" alt="學生清單" src="https://github.com/user-attachments/assets/6c69a911-bce5-43c2-bc70-4e14ad2f152d" />
