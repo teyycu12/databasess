@@ -10,7 +10,7 @@
 * **讀取 (Read)**: 在首頁以表格形式清楚地展示所有訂位清單。
 * **更新 (Update)**: 提供「編輯」功能，讓使用者能修改單筆訂位的詳細資訊。
 * **刪除 (Delete)**: 提供「刪除」功能，可以移除指定的訂位紀錄。
-* **系統截圖**:<img width="477" height="250" alt="螢幕擷取畫面 2025-11-03 002528" src="https://github.com/user-attachments/assets/3d45b37f-2b81-44f9-ac98-42f98464c322" />
+* <img width="477" height="250" alt="螢幕擷取畫面 2025-11-03 002528" src="https://github.com/user-attachments/assets/3d45b37f-2b81-44f9-ac98-42f98464c322" />
 * **HW1 影片連結**:
     **[ https://www.youtube.com/watch?v=Mpe8EFFMM-Q ]**
 
@@ -30,7 +30,10 @@
 ### ERD (實體關係圖)
 本系統的資料庫架構包含 `students`、`courses` 以及作為關聯橋梁的 `enrollments`，用以實現多對多 (Many-to-Many) 的關聯。
 
-![學生選課系統 ERD](HW2/資料庫系統.jpg)
+<img width="956" height="506" alt="學生清單" src="https://github.com/user-attachments/assets/6c69a911-bce5-43c2-bc70-4e14ad2f152d" />
+<img width="959" height="497" alt="課程管理" src="https://github.com/user-attachments/assets/c7cd25be-4686-468c-b2c5-dd8a1d0e44ac" />
+<img width="959" height="498" alt="選課管理" src="https://github.com/user-attachments/assets/7335e727-ad83-4ed2-a5a2-436a21ee27e3" />
+<img width="959" height="501" alt="選課報表" src="https://github.com/user-attachments/assets/6d2f653f-00ff-4fac-843d-6bf4289bd341" />
 
 ### 成果展示
 * **HW2 影片連結**:
