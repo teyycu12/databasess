@@ -35,6 +35,5 @@
 <img width="959" height="498" alt="選課管理" src="https://github.com/user-attachments/assets/7335e727-ad83-4ed2-a5a2-436a21ee27e3" />
 <img width="959" height="501" alt="選課報表" src="https://github.com/user-attachments/assets/6d2f653f-00ff-4fac-843d-6bf4289bd341" />
 
-### 成果展示
 * **HW2 影片連結**:
     **[https://www.youtube.com/watch?v=JYJ_1Xpg8Bg ]**
