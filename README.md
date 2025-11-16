@@ -37,3 +37,6 @@
 
 * **HW2 影片連結**:
     **[https://www.youtube.com/watch?v=JYJ_1Xpg8Bg ]**
+  ---
+
+## 🗂️ Final Proposal: NTNU Gourmet Scout
