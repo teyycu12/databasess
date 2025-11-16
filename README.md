@@ -40,3 +40,4 @@
   ---
 
 ## 🗂️ Final Proposal: NTNU Gourmet Scout
+ **[https://www.youtube.com/watch?v=YFXhNb_2epo]**
