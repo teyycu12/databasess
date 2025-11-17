@@ -364,5 +364,8 @@ def report_page():
     """
     return render_template_string(tmpl, rows=report_data)
 
+'''if __name__ == "__main__":
+    app.run(debug=True)'''
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")
