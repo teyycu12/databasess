@@ -1,0 +1,43 @@
+# 114-1 資料庫系統
+### 科技116 周庭伊
+
+---
+
+## 🗂️ 作業一 (HW1): 美式餐廳訂位系統
+使用 Python Flask 和 MySQL 建立的單一資料表網頁應用程式。系統模擬一個美式餐廳的後台訂位功能。
+### 功能
+* **新增 (Create)**: 使用者可透過網頁表單提交新的訂位資料。
+* **讀取 (Read)**: 在首頁以表格形式清楚地展示所有訂位清單。
+* **更新 (Update)**: 提供「編輯」功能，讓使用者能修改單筆訂位的詳細資訊。
+* **刪除 (Delete)**: 提供「刪除」功能，可以移除指定的訂位紀錄。
+* <img width="477" height="250" alt="螢幕擷取畫面 2025-11-03 002528" src="https://github.com/user-attachments/assets/3d45b37f-2b81-44f9-ac98-42f98464c322" />
+* **HW1 影片連結**:
+    **[ https://www.youtube.com/watch?v=Mpe8EFFMM-Q ]**
+
+---
+
+## 🗂️ 作業二 (HW2): 學生選課系統
+用於演示三資料表的關聯式資料庫設計，並實作了完整的 CRUD 功能以及 `JOIN` 查詢。
+### 功能
+* **多資料表 CRUD**:
+    * `學生管理`: 完整的「新增、讀取、更新、刪除」學生功能。
+    * `課程管理`: 完整的「新增、讀取、更新、刪除」課程功能。
+    * `選課管理`: 完整的「新增、讀取、更新、刪除」選課紀錄功能，使用下拉選單關聯學生與課程。
+* **JOIN 查詢 (作業重點)**:
+    * 建立了一個「選課報表」頁面。
+    * 此頁面使用 `INNER JOIN` 語法，串聯 `students`、`courses` 和 `enrollments` 三張資料表，以顯示「學生姓名」、「課程名稱」和「授課教師」，完美符合作業要求。
+
+### 操作示意圖
+本系統的資料庫架構包含 `students`、`courses` 以及作為關聯橋梁的 `enrollments`，用以實現多對多 (Many-to-Many) 的關聯。
+
+<img width="956" height="506" alt="學生清單" src="https://github.com/user-attachments/assets/6c69a911-bce5-43c2-bc70-4e14ad2f152d" />
+<img width="959" height="497" alt="課程管理" src="https://github.com/user-attachments/assets/c7cd25be-4686-468c-b2c5-dd8a1d0e44ac" />
+<img width="959" height="498" alt="選課管理" src="https://github.com/user-attachments/assets/7335e727-ad83-4ed2-a5a2-436a21ee27e3" />
+<img width="959" height="501" alt="選課報表" src="https://github.com/user-attachments/assets/6d2f653f-00ff-4fac-843d-6bf4289bd341" />
+
+* **HW2 影片連結**:
+    **[https://www.youtube.com/watch?v=JYJ_1Xpg8Bg ]**
+  ---
+
+## 🗂️ Final Proposal: NTNU Gourmet Scout
+ **[https://www.youtube.com/watch?v=YFXhNb_2epo]**
