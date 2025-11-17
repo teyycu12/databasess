@@ -30,7 +30,7 @@
 ### 操作示意圖
 本系統的資料庫架構包含 `students`、`courses` 以及作為關聯橋梁的 `enrollments`，用以實現多對多 (Many-to-Many) 的關聯。
 
-<img width="956" height="506" alt="學生清單" src="https://github.com/user-attachments/assets/6c69a911-bce5-43c2-bc70-4e14ad2f152d" />
+<img width="475" height="255" alt="學生清單" src="https://github.com/user-attachments/assets/6c69a911-bce5-43c2-bc70-4e14ad2f152d" />
 <img width="959" height="497" alt="課程管理" src="https://github.com/user-attachments/assets/c7cd25be-4686-468c-b2c5-dd8a1d0e44ac" />
 <img width="959" height="498" alt="選課管理" src="https://github.com/user-attachments/assets/7335e727-ad83-4ed2-a5a2-436a21ee27e3" />
 <img width="959" height="501" alt="選課報表" src="https://github.com/user-attachments/assets/6d2f653f-00ff-4fac-843d-6bf4289bd341" />
