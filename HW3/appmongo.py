@@ -9,7 +9,6 @@ app.secret_key = "dev_hw3_mongo"
 # ======= MongoDB 連線設定 (請修改這裡) =======
 # ⚠️ 請將下面的 <password> 換成你剛剛設定的密碼
 # ⚠️ 請將 hw3_user 換成你的帳號 (如果不是這個名字的話)
-# CONNECTION_STRING = "mongodb+srv://hw3_user:hw3_userpassword@cluster0.4oe0smy.mongodb.net/?appName=Cluster0"
 CONNECTION_STRING = os.environ.get("MONGO_CONNECTION_STRING")
 # 加一個檢查，如果 Render 忘記設定，程式會提醒你
 if not CONNECTION_STRING:
