@@ -3,7 +3,7 @@
 
 ---
 <details>
-  <summary>► 🗂️ 作業一 (HW1): 美式餐廳訂位系統</summary>
+  <summary>🗂️ 作業一 (HW1): 美式餐廳訂位系統</summary>
   
   <br>
   使用 Python Flask 和 MySQL 建立的單一資料表網頁應用程式。系統模擬一個美式餐廳的後台訂位功能。
@@ -21,7 +21,7 @@
 </details>
 
 <details>
-  <summary>► 🗂️ 作業二 (HW2): 學生選課系統</summary>
+  <summary>🗂️ 作業二 (HW2): 學生選課系統</summary>
   
   <br>
   用於演示三資料表的關聯式資料庫設計，並實作了完整的 CRUD 功能以及 `JOIN` 查詢。
@@ -48,7 +48,7 @@
 </details>
 
 <details open>
-  <summary>► 🗂️ 作業三 (HW3): 學生管理系統 (Flask + MongoDB + Render)</summary>
+  <summary>🗂️ 作業三 (HW3): 學生管理系統 (Flask + MongoDB + Render)</summary>
   
   <br>
   將 HW2 的學生選課系統從 MySQL 遷移至 NoSQL 資料庫 (MongoDB Atlas)，並使用 Render 平台將應用程式部署到公有雲上。
@@ -63,18 +63,17 @@
   * **雲端部署 (Render)**:
     * 使用 `requirements.txt` 管理依賴。
     * 設定環境變數 (Environment Variables) 來保護 MongoDB 連線密碼。
-    * 成功設定 <b>Root Directory</b> (根目錄) 解決 `requirements.txt not found` 錯誤。
     * 成功部署，取得公開網址。
 
   * **HW3 雲端網址 (Public URL)**:
-    **[https://database-hw3-o4lv.onrender.com]**
+    **[https://database-hw3-o4lv.onrender.com/students]**
   
   * **HW3 影片連結 (Demo on Render)**:
     **[ 你錄好的 YouTube 影片連結貼在這裡 ]**
 </details>
 
 <details>
-  <summary>► 🗂️ Final Proposal: NTNU Gourmet Scout</summary>
+  <summary>🗂️ Final Proposal: NTNU Gourmet Scout</summary>
 
   <br>
   * **影片連結**:
