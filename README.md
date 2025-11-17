@@ -67,7 +67,7 @@
     * 成功部署，取得公開網址。
 
   * **HW3 雲端網址 (Public URL)**:
-    **[ 你的 Render 網址貼在這裡 ]**
+    **[https://database-hw3-o4lv.onrender.com]**
   
   * **HW3 影片連結 (Demo on Render)**:
     **[ 你錄好的 YouTube 影片連結貼在這裡 ]**
