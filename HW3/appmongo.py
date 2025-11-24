@@ -9,10 +9,19 @@ app.secret_key = "dev_hw3_mongo"
 # ======= MongoDB 連線設定 (請修改這裡) =======
 # ⚠️ 請將下面的 <password> 換成你剛剛設定的密碼
 # ⚠️ 請將 hw3_user 換成你的帳號 (如果不是這個名字的話)
-CONNECTION_STRING = os.environ.get("MONGO_CONNECTION_STRING")
+# CONNECTION_STRING = os.environ.get("MONGO_CONNECTION_STRING")
 # 加一個檢查，如果 Render 忘記設定，程式會提醒你
+# if not CONNECTION_STRING:
+  #  print("❌ 錯誤：找不到環境變數 MONGO_CONNECTION_STRING")
+
+# 1. 先嘗試從環境變數抓 (這是給 Render 用的)
+CONNECTION_STRING = os.environ.get("MONGO_CONNECTION_STRING")
+
+# 2. 如果抓不到 (代表你現在是用自己電腦在跑)，就用這串直接連
 if not CONNECTION_STRING:
-    print("❌ 錯誤：找不到環境變數 MONGO_CONNECTION_STRING")
+    print("⚠️ 本地開發模式：使用寫死的連線字串")
+    # 👇 請把你的 MongoDB 完整連線字串貼在下面引號裡 (包含帳號密碼)
+    CONNECTION_STRING = "mongodb+srv://hw3_user:hw3_userpassword@cluster0.4oe0smy.mongodb.net/?appName=Cluster0"
 
 client = pymongo.MongoClient(CONNECTION_STRING)
 db = client["db_2025"] # 資料庫名稱
@@ -87,12 +96,13 @@ def manage_students():
       th,td{border:1px solid #ddd;padding:10px;}
       .btn {background:#007bff; color:#fff; padding: 5px 10px; text-decoration: none; border-radius: 4px;}
       .insert-btn {background:#28a745; color:#fff; padding: 10px 15px; text-decoration: none; border-radius: 5px; display:inline-block; margin-bottom:15px;}
+      .del-many-btn {background:#dc3545; color:#fff; padding: 10px 15px; border:none; border-radius: 5px; cursor:pointer; font-size:16px;}
     </style>
     <body>
       <div class="wrap">
-        <h2>學生管理 (MongoDB 版)</h2> 
+        <h2>學生管理 (MongoDB 版) + HW4 Bulk Delete</h2>
         
-        <a href="{{ url_for('init_data') }}" class="insert-btn">⚡ 點我測試 insert_many (批次新增資料)</a>
+        <a href="{{ url_for('init_data') }}" class="insert-btn">⚡ 測試 insert_many (批次新增資料)</a>
 
         {% with messages = get_flashed_messages() %}
           {% if messages %}{% for m in messages %}<div class="flash">{{ m }}</div>{% endfor %}{% endif %}
@@ -104,24 +114,38 @@ def manage_students():
           <button type="submit">新增</button>
         </form>
 
-        <table>
-          <tr><th>ID</th><th>姓名</th><th>Email</th><th>操作</th></tr>
-          {% for r in rows %}
-          <tr>
-            <td>{{ r['_id'] }}</td>
-            <td>{{ r['student_name'] }}</td>
-            <td>{{ r['email'] }}</td>
-            <td>
-                <a class="btn" href="{{ url_for('edit_student', student_id=r['_id']) }}">編輯</a>
-                <form method="post" action="{{ url_for('delete_student', student_id=r['_id']) }}" style="display:inline;">
-                   <button type="submit" onclick="return confirm('確定刪除？')">刪除</button>
-                </form>
-            </td>
-          </tr>
-          {% endfor %}
-        </table>
-        
         <hr>
+
+        <form action="{{ url_for('delete_many_students') }}" method="POST" onsubmit="return confirm('確定要刪除選取的學生嗎？');">
+            
+            <button type="submit" class="del-many-btn">🗑️ 刪除選取項目 (Delete Selected)</button>
+
+            <table>
+              <tr>
+                  <th>選取</th> <th>ID</th>
+                  <th>姓名</th>
+                  <th>Email</th>
+                  <th>操作</th>
+              </tr>
+              {% for r in rows %}
+              <tr>
+                <td style="text-align:center;">
+                    <input type="checkbox" name="selected_ids" value="{{ r['_id'] }}">
+                </td>
+                
+                <td>{{ r['_id'] }}</td>
+                <td>{{ r['student_name'] }}</td>
+                <td>{{ r['email'] }}</td>
+                <td>
+                    <a class="btn" href="{{ url_for('edit_student', student_id=r['_id']) }}">編輯</a>
+                    </td>
+              </tr>
+              {% endfor %}
+            </table>
+        </form>
+
+        <hr>
+
         <a href="{{ url_for('manage_courses') }}">管理課程</a> | 
         <a href="{{ url_for('manage_enrollments') }}">管理選課</a> |
         <a href="{{ url_for('report_page') }}">查看選課報表</a>
@@ -142,6 +166,36 @@ def delete_student(student_id):
         flash(f"✅ 學生已刪除")
     except Exception as e:
         flash(f"❌ 刪除失敗：{e}")
+    return redirect(url_for("manage_students"))
+
+# ======= [HW4] 批量刪除功能 (Bulk Delete) =======
+@app.route("/delete_many_students", methods=["POST"])
+def delete_many_students():
+    students_col = db["students"]
+    
+    # 1. 從前端表單抓取所有被勾選的 checkbox 值 (這會是一個 list)
+    #HTML裡的 name="selected_ids"
+    selected_ids = request.form.getlist("selected_ids") 
+    
+    if not selected_ids:
+        flash("❌ 你沒有勾選任何學生！")
+        return redirect(url_for("manage_students"))
+
+    try:
+        # 2. 將字串 ID 轉換成 ObjectId 列表
+        object_ids = [ObjectId(oid) for oid in selected_ids]
+        
+        # 3. 使用 $in 運算子進行批量刪除
+        # 意思：刪除 _id 在 object_ids 列表裡面的所有資料
+        result = students_col.delete_many({"_id": {"$in": object_ids}})
+        
+        # (選擇性) 連帶刪除選課紀錄
+        db["enrollments"].delete_many({"student_id": {"$in": selected_ids}})
+
+        flash(f"✅ 成功刪除 {result.deleted_count} 位學生 (批量刪除)")
+    except Exception as e:
+        flash(f"❌ 批量刪除失敗：{e}")
+
     return redirect(url_for("manage_students"))
 
 # ======= 編輯學生 (Update) =======
