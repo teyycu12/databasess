@@ -69,7 +69,7 @@
     **[https://database-hw3-o4lv.onrender.com/students]**
   
   * **HW3 影片連結 (Demo on Render)**:
-    **[ 你錄好的 YouTube 影片連結貼在這裡 ]**
+    **[https://www.youtube.com/watch?v=kzt-tx7TUtU]**
 </details>
 
 <details>
