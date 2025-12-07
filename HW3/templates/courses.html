@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <title>課程管理</title>
+    <style>
+        body{font-family:Arial;margin:40px;background:#f4f4f4;}
+        .wrap{max-width:800px;margin:auto;background:#fff;padding:20px;border-radius:10px;}
+        .flash{color:red;}
+        table{border-collapse:collapse;width:100%;margin-top:20px;}
+        th,td{border:1px solid #ddd;padding:10px;}
+        button{cursor:pointer;}
+    </style>
+</head>
+<body>
+<div class="wrap">
+  <h2>課程管理</h2>
+  {% with messages = get_flashed_messages() %}
+      {% if messages %}{% for m in messages %}<p class="flash">{{ m }}</p>{% endfor %}{% endif %}
+  {% endwith %}
+  
+  <form method="post">
+    課程: <input name="course_name" required>
+    教師: <input name="teacher">
+    <button type="submit">新增</button>
+  </form>
+
+  <table>
+    <tr><th>ID</th><th>課程名稱</th><th>教師</th><th>操作</th></tr>
+    {% for r in rows %}
+    <tr>
+      <td>{{ r['_id'] }}</td>
+      <td>{{ r['course_name'] }}</td>
+      <td>{{ r['teacher'] }}</td>
+      <td>
+         <form method="post" action="{{ url_for('delete_course', course_id=r['_id']) }}">
+            <button onclick="return confirm('刪除？')">刪除</button>
+         </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  <p><a href="{{ url_for('manage_students') }}">回學生管理</a></p>
+</div>
+</body>
+</html>

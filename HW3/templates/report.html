@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+    <title>報表</title>
+    <style>
+        body{font-family:Arial;margin:40px;background:#f4f4f4;} 
+        .wrap{max-width:800px;margin:auto;background:#fff;padding:20px;border-radius:10px;}
+        table{width:100%; border-collapse:collapse;} 
+        td,th{border:1px solid #ccc; padding:8px;}
+    </style>
+</head>
+<body>
+<div class="wrap">
+  <h2>選課報表 (MongoDB 版)</h2>
+  <table>
+    <tr><th>學生</th><th>課程</th><th>教師</th></tr>
+    {% for r in rows %}
+    <tr>
+        <td>{{ r['student_name'] }}</td>
+        <td>{{ r['course_name'] }}</td>
+        <td>{{ r['teacher'] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <p><a href="{{ url_for('manage_students') }}">回首頁</a></p>
+</div>
+</body>
+</html>

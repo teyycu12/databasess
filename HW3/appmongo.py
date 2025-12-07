@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for, render_template_string, flash
+from flask import Flask, request, redirect, url_for, render_template, flash
 import pymongo
 from bson.objectid import ObjectId  # 這是用來處理 MongoDB ID 的重要工具
 import os
@@ -7,13 +7,6 @@ app = Flask(__name__)
 app.secret_key = "dev_hw3_mongo"
 
 # ======= MongoDB 連線設定 (請修改這裡) =======
-# ⚠️ 請將下面的 <password> 換成你剛剛設定的密碼
-# ⚠️ 請將 hw3_user 換成你的帳號 (如果不是這個名字的話)
-# CONNECTION_STRING = os.environ.get("MONGO_CONNECTION_STRING")
-# 加一個檢查，如果 Render 忘記設定，程式會提醒你
-# if not CONNECTION_STRING:
-  #  print("❌ 錯誤：找不到環境變數 MONGO_CONNECTION_STRING")
-
 # 1. 先嘗試從環境變數抓 (這是給 Render 用的)
 CONNECTION_STRING = os.environ.get("MONGO_CONNECTION_STRING")
 
@@ -84,75 +77,10 @@ def manage_students():
     # 轉成 list 方便模板使用
     rows = list(students_col.find())
 
-    # (Template) 網頁模板
-    tmpl = """
-    <!doctype html>
-    <title>學生管理</title> 
-    <style>
-      body{font-family:Arial,sans-serif;margin:40px;background:#f4f4f4;}
-      .wrap{max-width:800px;margin:auto;background:#fff;padding:20px;border-radius:10px;}
-      .flash{color:#c22;background:#fdd;padding:10px;margin-bottom:10px;}
-      table{border-collapse:collapse;width:100%;margin-top:20px;}
-      th,td{border:1px solid #ddd;padding:10px;}
-      .btn {background:#007bff; color:#fff; padding: 5px 10px; text-decoration: none; border-radius: 4px;}
-      .insert-btn {background:#28a745; color:#fff; padding: 10px 15px; text-decoration: none; border-radius: 5px; display:inline-block; margin-bottom:15px;}
-      .del-many-btn {background:#dc3545; color:#fff; padding: 10px 15px; border:none; border-radius: 5px; cursor:pointer; font-size:16px;}
-    </style>
-    <body>
-      <div class="wrap">
-        <h2>學生管理 (MongoDB 版) + HW4 Bulk Delete</h2>
-        
-        <a href="{{ url_for('init_data') }}" class="insert-btn">⚡ 測試 insert_many (批次新增資料)</a>
+    # 2. 改這裡：直接回傳 HTML 檔案，不用再貼一長串字串了！
+    return render_template("students.html", rows=rows)
 
-        {% with messages = get_flashed_messages() %}
-          {% if messages %}{% for m in messages %}<div class="flash">{{ m }}</div>{% endfor %}{% endif %}
-        {% endwith %}
 
-        <form method="post">
-          <label>姓名:</label><input name="student_name" required>
-          <label>Email:</label><input type="email" name="email" required>
-          <button type="submit">新增</button>
-        </form>
-
-        <hr>
-
-        <form action="{{ url_for('delete_many_students') }}" method="POST" onsubmit="return confirm('確定要刪除選取的學生嗎？');">
-            
-            <button type="submit" class="del-many-btn">🗑️ 刪除選取項目 (Delete Selected)</button>
-
-            <table>
-              <tr>
-                  <th>選取</th> <th>ID</th>
-                  <th>姓名</th>
-                  <th>Email</th>
-                  <th>操作</th>
-              </tr>
-              {% for r in rows %}
-              <tr>
-                <td style="text-align:center;">
-                    <input type="checkbox" name="selected_ids" value="{{ r['_id'] }}">
-                </td>
-                
-                <td>{{ r['_id'] }}</td>
-                <td>{{ r['student_name'] }}</td>
-                <td>{{ r['email'] }}</td>
-                <td>
-                    <a class="btn" href="{{ url_for('edit_student', student_id=r['_id']) }}">編輯</a>
-                    </td>
-              </tr>
-              {% endfor %}
-            </table>
-        </form>
-
-        <hr>
-
-        <a href="{{ url_for('manage_courses') }}">管理課程</a> | 
-        <a href="{{ url_for('manage_enrollments') }}">管理選課</a> |
-        <a href="{{ url_for('report_page') }}">查看選課報表</a>
-      </div>
-    </body>
-    """
-    return render_template_string(tmpl, rows=rows)
 
 # ======= 刪除學生 (Delete) =======
 # 注意：MongoDB 的 ID 是字串，所以這裡移除了 <int: ...>
@@ -217,20 +145,10 @@ def edit_student(student_id):
 
     # 讀取單筆資料
     r = students_col.find_one({"_id": ObjectId(student_id)})
+
+    # 3. 改這裡
+    return render_template("edit.html", r=r)
     
-    tmpl = """
-    <!doctype html>
-    <div style="padding:20px;">
-        <h2>編輯學生</h2>
-        <form method="post">
-          姓名: <input name="student_name" value="{{ r['student_name'] }}" required><br><br>
-          Email: <input name="email" value="{{ r['email'] }}" required><br><br>
-          <button type="submit">儲存</button>
-          <a href="{{ url_for('manage_students') }}">取消</a>
-        </form>
-    </div>
-    """
-    return render_template_string(tmpl, r=r)
 
 
 # ======= 課程管理 (CRUD) =======
@@ -279,7 +197,7 @@ def manage_courses():
       <p><a href="{{ url_for('manage_students') }}">回學生管理</a></p>
     </body>
     """
-    return render_template_string(tmpl, rows=rows)
+    return render_template("courses.html", rows=rows)
 
 @app.route("/delete_course/<course_id>", methods=["POST"])
 def delete_course(course_id):
@@ -366,7 +284,8 @@ def manage_enrollments():
       <p><a href="{{ url_for('manage_students') }}">回學生管理</a></p>
     </body>
     """
-    return render_template_string(tmpl, students=all_students, courses=all_courses, enrollments=display_enrollments)
+    return render_template("enrollments.html", students=all_students, courses=all_courses, enrollments=display_enrollments)
+
 
 @app.route("/delete_enrollment/<eid>", methods=["POST"])
 def delete_enrollment(eid):
@@ -415,7 +334,7 @@ def report_page():
       <p><a href="{{ url_for('manage_students') }}">回首頁</a></p>
     </body>
     """
-    return render_template_string(tmpl, rows=report_data)
+    return render_template("report.html", rows=report_data)
 
 '''if __name__ == "__main__":
     app.run(debug=True)'''

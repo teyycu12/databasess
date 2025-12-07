@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>學生管理系統</title> 
+    <style>
+      body{font-family:Arial,sans-serif;margin:40px;background:#f4f4f4;}
+      .wrap{max-width:800px;margin:auto;background:#fff;padding:20px;border-radius:10px;box-shadow: 0 0 10px rgba(0,0,0,0.1);}
+      .flash{color:#721c24;background-color:#f8d7da;border-color:#f5c6cb;padding:10px;margin-bottom:10px;border-radius:5px;}
+      table{border-collapse:collapse;width:100%;margin-top:20px;}
+      th,td{border:1px solid #ddd;padding:12px;text-align:left;}
+      th{background-color: #f8f9fa;}
+      .btn {background:#007bff; color:#fff; padding: 5px 10px; text-decoration: none; border-radius: 4px; font-size: 14px;}
+      .btn:hover {background:#0056b3;}
+      .insert-btn {background:#28a745; color:#fff; padding: 10px 15px; text-decoration: none; border-radius: 5px; display:inline-block; margin-bottom:15px;}
+      .del-many-btn {background:#dc3545; color:#fff; padding: 10px 15px; border:none; border-radius: 5px; cursor:pointer; font-size:16px; margin-bottom: 10px;}
+      .del-many-btn:hover {background:#c82333;}
+      input[type="text"], input[type="email"] {padding: 8px; border: 1px solid #ccc; border-radius: 4px;}
+    </style>
+</head>
+<body>
+  <div class="wrap">
+    <h2>🎓 學生管理 (MongoDB 版)</h2> 
+    
+    <a href="{{ url_for('init_data') }}" class="insert-btn">⚡ 測試 insert_many (HW3)</a>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}{% for m in messages %}<div class="flash">{{ m }}</div>{% endfor %}{% endif %}
+    {% endwith %}
+
+    <div style="background:#e9ecef; padding:15px; border-radius:5px; margin-bottom:20px;">
+        <h3>新增學生</h3>
+        <form method="post">
+          <label>姓名:</label> <input type="text" name="student_name" required>
+          <label>Email:</label> <input type="email" name="email" required>
+          <button type="submit" class="btn" style="background:#17a2b8;">新增</button>
+        </form>
+    </div>
+
+    <hr>
+
+    <form action="{{ url_for('delete_many_students') }}" method="POST" onsubmit="return confirm('確定要刪除選取的學生嗎？');">
+        
+        <button type="submit" class="del-many-btn">🗑️ 刪除選取項目 (HW4 Bulk Delete)</button>
+
+        <table>
+          <tr>
+              <th style="width: 50px; text-align: center;">選取</th>
+              <th>ID</th>
+              <th>姓名</th>
+              <th>Email</th>
+              <th>操作</th>
+          </tr>
+          {% for r in rows %}
+          <tr>
+            <td style="text-align:center;">
+                <input type="checkbox" name="selected_ids" value="{{ r['_id'] }}" style="transform: scale(1.5);">
+            </td>
+            
+            <td style="font-size: 12px; color: #666;">{{ r['_id'] }}</td>
+            <td>{{ r['student_name'] }}</td>
+            <td>{{ r['email'] }}</td>
+            <td>
+                <a class="btn" href="{{ url_for('edit_student', student_id=r['_id']) }}">編輯</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+    </form>
+    
+    <hr style="margin-top: 30px;">
+    <div style="text-align: center;">
+        <a href="{{ url_for('manage_courses') }}">管理課程</a> | 
+        <a href="{{ url_for('manage_enrollments') }}">管理選課</a> |
+        <a href="{{ url_for('report_page') }}">查看選課報表</a>
+    </div>
+  </div>
+</body>
+</html>

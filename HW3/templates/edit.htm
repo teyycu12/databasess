@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+    <title>編輯學生</title>
+    <style>
+        body{font-family:Arial; margin:40px; background:#f4f4f4;}
+        .wrap{max-width:500px; margin:auto; background:#fff; padding:20px; border-radius:10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);}
+        input {width: 95%; padding: 10px; margin: 5px 0 15px 0; border: 1px solid #ccc; border-radius: 4px;}
+        button {background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;}
+        a {text-decoration: none; color: #666; margin-left: 10px;}
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <h2>✏️ 編輯學生資料</h2>
+        <form method="post">
+          <label>姓名:</label>
+          <input name="student_name" value="{{ r['student_name'] }}" required>
+          
+          <label>Email:</label>
+          <input name="email" value="{{ r['email'] }}" required>
+          
+          <br>
+          <button type="submit">儲存變更</button>
+          <a href="{{ url_for('manage_students') }}">取消</a>
+        </form>
+    </div>
+</body>
+</html>
