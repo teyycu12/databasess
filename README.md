@@ -75,6 +75,14 @@
 <details>
   <summary>🗂️ Final Proposal: NTNU Gourmet Scout</summary>
 
+ * **HW4 影片連結 (Demo on Render)**:
+    **[https://youtu.be/9wxwLkEWGiU]**
+</details>
+
+
+<details open>
+  <summary>🗂️ 作業4 (HW3): </summary>
+
   <br>
   * **影片連結**:
     **[ https://www.youtube.com/watch?v=YFXhNb_2epo ]**
