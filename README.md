@@ -3,7 +3,7 @@
 
 ---
 <details>
-  <summary>🗂️ 作業一 (HW1): 美式餐廳訂位系統</summary>
+  <summary>🗂️ HW1: 美式餐廳訂位系統</summary>
   
   <br>
   使用 Python Flask 和 MySQL 建立的單一資料表網頁應用程式。系統模擬一個美式餐廳的後台訂位功能。
@@ -21,7 +21,7 @@
 </details>
 
 <details>
-  <summary>🗂️ 作業二 (HW2): 學生選課系統</summary>
+  <summary>🗂️ HW2: 學生選課系統</summary>
   
   <br>
   用於演示三資料表的關聯式資料庫設計，並實作了完整的 CRUD 功能以及 `JOIN` 查詢。
@@ -48,7 +48,7 @@
 </details>
 
 <details open>
-  <summary>🗂️ 作業三 (HW3): 學生管理系統 (Flask + MongoDB + Render)</summary>
+  <summary>🗂️ HW3: 學生管理系統 (Flask + MongoDB + Render)</summary>
   
   <br>
   將 HW2 的學生選課系統從 MySQL 遷移至 NoSQL 資料庫 (MongoDB Atlas)，並使用 Render 平台將應用程式部署到公有雲上。
@@ -74,12 +74,22 @@
 
 
 <details open>
-  <summary>🗂️ 作業4 (HW3): </summary>
-
-  <br>
-  * **HW4 影片連結 (Demo on Render)**:
-    **[https://youtu.be/9wxwLkEWGiU]**
+  <summary>► 🗂️ HW4: 進階功能 - 批量刪除與程式碼重構 (Bulk Delete & Refactoring)</summary>
   
+  <br>
+  本作業延續 HW3 的 MongoDB 架構，新增了符合使用者體驗的「批量刪除」功能，並對專案結構進行了優化 (前後端分離)。
+
+  ### 核心功能 (Features)
+  * **批量刪除 (Bulk Delete - 作業重點)**: 
+    * **前端**: 使用 HTML Form 包覆表格，並在每一行資料前加入 `Checkbox` (複選框)，允許使用者一次勾選多位學生。
+    * **後端**: 接收前端傳來的 ID 列表 (`selected_ids`)，將其轉換為 `ObjectId`，並使用 MongoDB 的 **`$in`** 運算子搭配 **`delete_many`** 指令，實現一次刪除多筆資料的高效操作。
+  * **程式碼重構 (Refactoring)**:
+    * 將原本混雜在 `appmongo.py` 中的 HTML 程式碼全數抽離。
+    * 建立 **`templates`** 資料夾，並使用 Flask 的 **`render_template`** 函式來渲染頁面 (`students.html`, `edit.html` 等)。
+    * 提升了程式碼的可讀性與維護性。
+
+  * **HW4 影片連結 (YouTube)**:
+    **[https://youtu.be/9wxwLkEWGiU]**
 </details>
 
 <details>
