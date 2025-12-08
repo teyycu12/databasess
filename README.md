@@ -74,7 +74,7 @@
 
 
 <details open>
-  <summary>► 🗂️ HW4: 進階功能 - 批量刪除與程式碼重構 (Bulk Delete & Refactoring)</summary>
+  <summary>🗂️ HW4: 進階功能 - 批量刪除與程式碼重構 (Bulk Delete & Refactoring)</summary>
   
   <br>
   本作業延續 HW3 的 MongoDB 架構，新增了符合使用者體驗的「批量刪除」功能，並對專案結構進行了優化 (前後端分離)。
