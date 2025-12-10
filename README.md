@@ -96,6 +96,7 @@
   <summary>🗂️ Final Proposal: NTNU Gourmet Scout</summary>
   * **影片連結**:
     **[ https://www.youtube.com/watch?v=YFXhNb_2epo ]**
+  
   * **程式碼**:
     **[ https://github.com/teyycu12/database_final.git ]**
 </details>
