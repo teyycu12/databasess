@@ -97,4 +97,7 @@
   * **程式碼**:
     **[ https://github.com/teyycu12/database_final.git ]**
 
+  * **Final Proposal Demo**:
+    **[https://youtu.be/iBiS2Vqrwqs]**
+
 </details>
